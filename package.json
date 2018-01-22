@@ -1,0 +1,60 @@
+{
+  "name": "choo-postcss-proto-template",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "homepage": "",
+  "author": "Sam Elie <samradelie@gmail.com>",
+  "keywords": [
+    "budo",
+    "browserify",
+    "choo",
+    "postcss"
+  ],
+  "repository": {
+    "type": "git",
+    "url": ".git",
+    "web": "/"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "choo": "^6.7.0",
+    "choo-log": "^8.0.0",
+    "fastclick": "^1.0.6",
+    "lodash": "^4.17.4",
+    "path-parse": "^1.0.5",
+    "readdir": "0.0.13",
+    "xhr-request": "^1.0.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browserify": "^15.2.0",
+    "budo": "^10.0.4",
+    "concurrently": "^3.5.1",
+    "cssnano-cli": "^1.0.5",
+    "ejs-cli": "^2.0.0",
+    "envify": "^4.1.0",
+    "escodegen": "^1.9.0",
+    "estraverse": "^4.2.0",
+    "normalize.css": "^7.0.0",
+    "postcss-cli": "^4.1.1",
+    "postcss-color-function": "^4.0.1",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-fontpath": "^1.0.0",
+    "postcss-import": "^11.0.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development ejs-cli src/index.ejs > public/index.html && NODE_ENV=development concurrently \"budo index.js:bundle.js --live --dir public --serve bundle.js -- -t babelify --presets [ es2015 stage-0 stage-1 ] -t envify \" \"postcss -c postcss.config.js src/postcss/index.css -o public/main.css -m -w\" ",
+    "build": "concurrently \"browserify index.js -t [ envify --NODE_ENV production ] -t babelify --presets [ es2015 stage-0 stage-1 ] | uglifyjs > public/bundle.min.js \" \" postcss -c postcss.config.js src/postcss/index.css -o public/main.css && cssnano < public/main.css > public/main.min.css && NODE_ENV=production ejs-cli src/index.ejs > public/index.html\" "
+  },
+  "false": {}
+}

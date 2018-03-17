@@ -33,6 +33,7 @@ const onload = el => {}
 const menu = require("./views/menu")
 const projects = require("./views/projects")
 const project = require("./views/project")
+const iframe = require("./views/iframe")
 
 function mainView(state, prev, send) {
   return html`
@@ -44,10 +45,11 @@ function mainView(state, prev, send) {
     </div>
   `
 }
-app.route(`*`, mainView)
-app.route(`/project-itterations/:project`, project)
+app.route(`/`, mainView)
+app.route(`/projects/:project`, project)
+app.route(`/projects/:project/:item`, iframe)
 
-Xhr(`http://${window.location.host}/projects.json`, { json: true }).then(({ body }) => {
+Xhr(`/projects.json`, { json: true }).then(({ body }) => {
   app.state.projects = uniq(body.map(({ project }) => project))
   app.state.projectData = body
 

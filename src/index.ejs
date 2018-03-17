@@ -24,12 +24,12 @@
 
   <title>Enchroma</title>
   <!-- CSS -->
-  <link href=<%=process.env.NODE_ENV==="production" ? "http://localhost:4433/main.min.css" : "/main.css"%>  rel="stylesheet">
+  <link href=<%=process.env.NODE_ENV==="production" ? "/main.min.css" : "/main.css"%>  rel="stylesheet">
 
 </head>
 <body>
 </body>
 <script>
 </script>
-<script src=<%=process.env.NODE_ENV==="production" ? "http://localhost:4433/bundle.min.js" : "/bundle.js"%>></script>
+<script src=<%=process.env.NODE_ENV==="production" ? "/bundle.min.js" : "/bundle.js"%>></script>
 </html>

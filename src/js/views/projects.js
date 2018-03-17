@@ -6,9 +6,9 @@ module.exports = (state, emit) => {
   const {projectData, projects} = state
   if (!projectData) return null
   return html`
-        <div class="projects">
+        <div class="full projects">
           ${projects.map(name =>
-            projectButton({ text: name, url: `http://${window.location.host}/project-itterations/${name}` }, emit)
+            projectButton({ text: name, url: `/projects/${name}` }, emit)
           )}
         </div>
       `

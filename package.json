@@ -20,6 +20,7 @@
     "bluebird": "^3.5.1",
     "choo": "^6.7.0",
     "choo-log": "^8.0.0",
+    "ejs": "^2.5.8",
     "express": "^4.16.3",
     "fastclick": "^1.0.6",
     "ip": "^1.1.5",
@@ -57,8 +58,8 @@
     "uglify-js": "^3.3.15"
   },
   "scripts": {
-    "start": "NODE_ENV=development ejs-cli src/index.ejs > public/index.html && NODE_ENV=development concurrently \"budo src/js/app.js:bundle.js --pushstate --live --dir public --serve bundle.js -- -t babelify --presets [ es2015 stage-0 stage-1 ] -t envify \" \"postcss -c postcss.config.js src/postcss/index.css -o public/main.css -m -w\" ",
-    "build": "concurrently \"chmod +x bin/generate-files.sh && bin/generate-files.sh\" \"browserify src/js/app.js -t [ envify --NODE_ENV production ] -t babelify --presets [ es2015 stage-0 stage-1 ] | uglifyjs > public/bundle.min.js \" \" postcss -c postcss.config.js src/postcss/index.css -o public/main.css && cssnano < public/main.css > public/main.min.css && NODE_ENV=production ejs-cli src/index.ejs > public/index.html\" "
+    "start": "NODE_ENV=development ejs-cli src/index.ejs > public/static/index.html && NODE_ENV=development concurrently \"budo src/js/app.js:bundle.js --pushstate --live --dir public --serve bundle.js -- -t babelify --presets [ es2015 stage-0 stage-1 ] -t envify \" \"postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css -m -w\" ",
+    "build": "concurrently \"chmod +x bin/generate-files.sh && bin/generate-files.sh\" \"browserify src/js/app.js -t [ envify --NODE_ENV production ] -t babelify --presets [ es2015 stage-0 stage-1 ] | uglifyjs > public/static/bundle.min.js \" \" postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css && cssnano < public/static/main.css > public/static/main.min.css && NODE_ENV=production ejs-cli src/index.ejs > public/static/index.html\""
   },
   "false": {}
 }

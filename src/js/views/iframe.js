@@ -6,7 +6,7 @@ import projectButton from "./project-button"
 module.exports = (state, emit) => {
   return html`
       <div class="full">
-        <iframe class="iframe" src="${state.href.replace('projects', 'html')}"></iframe>
+        <iframe class="iframe" src="${state.href.replace('projects', 'views')}"></iframe>
         </div>
       `
 }

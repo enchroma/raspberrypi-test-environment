@@ -25,6 +25,8 @@
     width: 300px;
   }
 
+
+
   .output-items {
     position: relative;
     width: 100%;
@@ -128,10 +130,13 @@
     </div>
   </div>
   <canvas id="myCanvas"></canvas>
+  <textarea id="output" class="output"></textarea>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/10.1.0/nouislider.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/color-js/1.0.1/color.min.js"></script>
   <script>
   //get output div by its class
+  var outputDumpEl = document.querySelector('#output')
+  outputDumpEl.style.display = "none"
   var outputEl = document.querySelector('.output')
   var c = document.getElementById("myCanvas");
   c.width = window.innerWidth
@@ -294,6 +299,10 @@
       hour: '2-digit',
       minute: '2-digit'
     });
+
+    outputDumpEl.style.display = "block";
+    outputDumpEl.innerHTML = csv;
+
     filename = obj.filename || date + '.csv';
 
     if (!csv.match(/^data:text\/csv/i)) {

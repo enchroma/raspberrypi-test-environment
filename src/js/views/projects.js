@@ -5,7 +5,7 @@ module.exports = (state, emit) => {
   const { projectData, projects } = state
   if (!projectData) return null
   return html`
-        <div class="full projects">
+        <div class="projects">
           ${projects
             .filter(project => project.indexOf("/") < 0)
             .map(name =>

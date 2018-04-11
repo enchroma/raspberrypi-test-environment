@@ -2,6 +2,7 @@ const PORT = 8080
 const ip = require("ip")
 const path = require("path")
 const querystring = require("querystring")
+const exec = require("child_process").execSync
 const express = require("express")
 const app = express()
 app.use(express.static(path.join(__dirname, "public/static")))
@@ -19,9 +20,15 @@ app.use("/views", function(req, res, next) {
   const file = `../public/static/${path.parse(dir).base}/${path.parse(name).name}.html`
   console.log(file);
     res.render("index", {
-      SOCKET_URL: `"${ip.address()}:${PORT}"`,
+      SOCKET_URL: `"http://${ip.address()}:${PORT}"`,
       PROJECT: file,
     })
+})
+
+app.post("/shutdown", (req, res) => {
+  console.log("shutdown");
+  exec('shutdown now')
+  return res.redirect("/")
 })
 
 // app.set("view engine", "ejs")
@@ -52,6 +59,7 @@ app.get("/projects/*", (req, res) => {
   /*res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   res.redirect("/?" + query)*/
 })
+
 /*app.get("*.ejs", (req, res) => {
   console.log(req);
   return res.redirect("/")
@@ -68,7 +76,7 @@ const io = require("socket.io")(server)
 
 const sockets = []
 io.on("connection", function(socket) {
-  console.log(`connection from ${sockets.id}`);
+  console.log(`connection from ${socket.id}`);
   sockets.push(socket)
   socket.on("disconnect", function() {
     sockets.splice(sockets.indexOf(socket), 1)

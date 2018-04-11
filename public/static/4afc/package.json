@@ -1,0 +1,57 @@
+{
+  "name": "after-image-quads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "watchify index.js -o bundle.js",
+    "build:js": "browserify index.js -o bundle.js",
+    "build:js:prod": "NODE_ENV=production browserify index.js > bundle.js",
+    "build:html": "ejs-cli index.ejs > index.html",
+    "build": "npm-run-all -s -l build:html build:js",
+    "build:prod": "NODE_ENV=production npm-run-all -s -l build:html build:js:prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xhr-request": "^1.1.0"
+  },
+  "prettier": {
+    "useTabs": false,
+    "bracketSpacing": true,
+    "tabWidth": 1,
+    "printWidth": 140,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "jsxBracketSameLine": false,
+    "parser": "babylon",
+    "semi": true
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ],
+          "plugins": "transform-object-rest-spread"
+        }
+      ],
+      [
+        "envify"
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "ejs-cli": "^2.0.1",
+    "envify": "^4.1.0",
+    "npm-run-all": "^4.1.2",
+    "watchify": "^3.11.0"
+  }
+}

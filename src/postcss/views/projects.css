@@ -3,7 +3,8 @@
 
 .projects {
   position: relative;
-  width: 100%;
+  margin: 0 auto;
+  width: calc(100% - 80px);
   height: 100%;
   display: flex;
   justify-content: flex-start;

@@ -15,5 +15,6 @@ rm -rf node_modules
 cd ../../../
 npm i
 npm run build
+./start.sh
 
 

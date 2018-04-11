@@ -27,7 +27,7 @@ app.use("/views", function(req, res, next) {
 
 app.post("/shutdown", (req, res) => {
   console.log("shutdown");
-  exec('shutdown now')
+  exec('sudo /sbin/shutdown -r now')
   return res.redirect("/")
 })
 

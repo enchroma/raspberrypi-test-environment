@@ -7,4 +7,7 @@ Prototype sites for dev and production
 
 # prod
 
-`npm run build`
+`./install.sh`
+
+## notes
+

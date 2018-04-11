@@ -43,13 +43,13 @@
     "babelify": "^8.0.0",
     "browserify": "^16.1.1",
     "budo": "^11.2.0",
-    "concurrently": "^3.5.1",
     "cssnano-cli": "^1.0.5",
     "ejs-cli": "^2.0.0",
     "envify": "^4.1.0",
     "escodegen": "^1.9.0",
     "estraverse": "^4.2.0",
     "normalize.css": "^8.0.0",
+    "npm-run-all": "^4.1.2",
     "postcss-cli": "^4.1.1",
     "postcss-color-function": "^4.0.1",
     "postcss-custom-properties": "^6.2.0",
@@ -79,8 +79,12 @@
   },
   "scripts": {
     "start": "NODE_ENV=development ejs-cli src/index.ejs > public/static/index.html && NODE_ENV=development concurrently \"budo src/js/app.js:bundle.js --pushstate --live --dir public --serve bundle.js \" \"postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css -m -w\" ",
+    "generate": "chmod +x bin/generate-files.sh && bin/generate-files.sh",
+    "build:js": "NODE_ENV=production browserify src/js/app.js | uglifyjs > public/static/bundle.min.js",
+    "build:css": "postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css && cssnano < public/static/main.css > public/static/main.min.css",
+    "build:html": "NODE_ENV=production ejs-cli src/index.ejs > public/static/index.html",
     "build:socket": "NODE_ENV=production browserify src/socket.js | uglifyjs > public/static/socket.min.js",
-    "build": "concurrently \"chmod +x bin/generate-files.sh && bin/generate-files.sh\" \"NODE_ENV=production browserify src/js/app.js | uglifyjs > public/static/bundle.min.js \" \" postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css && cssnano < public/static/main.css > public/static/main.min.css && NODE_ENV=production ejs-cli src/index.ejs > public/static/index.html\" \"npm run build:socket\" "
+    "build": "npm-run-all -l -s generate build:js build:css build:html build:socket"
   },
   "false": {}
 }

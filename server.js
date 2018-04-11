@@ -84,7 +84,7 @@ io.on("connection", function(socket) {
 })
 
 const PythonShell = require('python-shell');
-if(process.env.NODE_ENV === "production"){
+//if(process.env.NODE_ENV === "production"){
   const pyshell = new PythonShell('pyth.py');
 
   pyshell.on('message', function (message) {
@@ -92,6 +92,6 @@ if(process.env.NODE_ENV === "production"){
         sockets[i].emit('color', message)
       }
   });
-}
+//}
 
 console.log(`http://${ip.address()}:${PORT}`)

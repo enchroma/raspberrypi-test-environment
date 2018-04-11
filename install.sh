@@ -5,6 +5,7 @@
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # nvm install 9.4.0
 # nvm alias default 9.4.0
+npm i pm2 -g
 rm -rf public/static/4afc
 git clone https://github.com/adddog/enchroma-after-image-quads.git public/static/4afc
 cd public/static/4afc

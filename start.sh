@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 
-cd public
-serve -p 4433 --single
-ngrok start don
+pm2 stop 0
+pm2 start server.js --name 0 --env production

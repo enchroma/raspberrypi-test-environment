@@ -1,5 +1,4 @@
-Prototype sites for dev and production
-
+Prototype sites for production on the box.
 
 # dev
 
@@ -10,4 +9,10 @@ Prototype sites for dev and production
 `./install.sh`
 
 ## notes
+
+All projects are cloned into /public/static and served from a common `views/index.ejs` file
+
+Relaed
+
+
 

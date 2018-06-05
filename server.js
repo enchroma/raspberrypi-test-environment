@@ -16,18 +16,22 @@ app.set("view engine", "ejs")
 
 app.use("/views", function(req, res, next) {
   //const indexEjs = path.resolve(__dirname, "public/projects", "index")
-  const { dir, name } = path.parse(req.originalUrl.replace(req.baseUrl, ""))
-  const file = `../public/static/${path.parse(dir).base}/${path.parse(name).name}.html`
-  console.log(file);
-    res.render("index", {
-      SOCKET_URL: `"http://${ip.address()}:${PORT}"`,
-      PROJECT: file,
-    })
+  const { dir, name } = path.parse(
+    req.originalUrl.replace(req.baseUrl, "")
+  )
+  const file = `../public/static/${path.parse(dir).base}/${
+    path.parse(name).name
+  }.html`
+  console.log(file)
+  res.render("index", {
+    SOCKET_URL: `"http://${ip.address()}:${PORT}"`,
+    PROJECT: file,
+  })
 })
 
 app.post("/shutdown", (req, res) => {
-  console.log("shutdown");
-  exec('sudo /sbin/shutdown -r now')
+  console.log("shutdown")
+  exec("sudo /sbin/shutdown -r now")
   return res.redirect("/")
 })
 
@@ -76,22 +80,22 @@ const io = require("socket.io")(server)
 
 const sockets = []
 io.on("connection", function(socket) {
-  console.log(`connection from ${socket.id}`);
+  console.log(`connection from ${socket.id}`)
   sockets.push(socket)
   socket.on("disconnect", function() {
     sockets.splice(sockets.indexOf(socket), 1)
   })
 })
 
-const PythonShell = require('python-shell');
+const PythonShell = require("python-shell")
 //if(process.env.NODE_ENV === "production"){
-  const pyshell = new PythonShell('pyth.py');
+// const pyshell = new PythonShell("pyth.py")
 
-  pyshell.on('message', function (message) {
-      for (var i = 0; i < sockets.length; i++) {
-        sockets[i].emit('color', message)
-      }
-  });
+// pyshell.on("message", function(message) {
+//   for (var i = 0; i < sockets.length; i++) {
+//     sockets[i].emit("color", message)
+//   }
+// })
 //}
 
 console.log(`http://${ip.address()}:${PORT}`)

@@ -6,7 +6,9 @@
 # nvm install 9.4.0
 # nvm alias default 9.4.0
 rm -rf public/static/4afc
+rm -rf public/static/after-image-v1
 git clone https://github.com/enchroma/4afc.git public/static/4afc
+git clone https://github.com/enchroma/after-image-v1.git public/static/after-image-v1
 npm i
 npm run build
 ./start.sh

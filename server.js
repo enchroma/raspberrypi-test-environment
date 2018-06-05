@@ -89,13 +89,13 @@ io.on("connection", function(socket) {
 
 const PythonShell = require("python-shell")
 //if(process.env.NODE_ENV === "production"){
-// const pyshell = new PythonShell("pyth.py")
+const pyshell = new PythonShell("pyth.py")
 
-// pyshell.on("message", function(message) {
-//   for (var i = 0; i < sockets.length; i++) {
-//     sockets[i].emit("color", message)
-//   }
-// })
+pyshell.on("message", function(message) {
+  for (var i = 0; i < sockets.length; i++) {
+    sockets[i].emit("color", message)
+  }
+})
 //}
 
 console.log(`http://${ip.address()}:${PORT}`)

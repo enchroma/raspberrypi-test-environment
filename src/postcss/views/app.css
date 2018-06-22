@@ -19,3 +19,13 @@
   background-image: url("../../images/shutdown.svg");
   cursor: pointer;
 }
+
+.reboot {
+  position: absolute;
+  top: 30px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  background-image: url("../../images/reboot.svg");
+  cursor: pointer;
+}

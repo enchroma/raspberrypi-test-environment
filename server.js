@@ -29,9 +29,15 @@ app.use("/views", function(req, res, next) {
   })
 })
 
+app.post("/reboot", (req, res) => {
+  console.log("reboot")
+  exec("sudo /sbin/shutdown -r now")
+  return res.redirect("/")
+})
+
 app.post("/shutdown", (req, res) => {
   console.log("shutdown")
-  exec("sudo /sbin/shutdown -r now")
+  exec("sudo /sbin/shutdown now")
   return res.redirect("/")
 })
 

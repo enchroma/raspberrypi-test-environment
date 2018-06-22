@@ -48,6 +48,7 @@
     "envify": "4.1.0",
     "escodegen": "1.9.0",
     "estraverse": "4.2.0",
+    "husky": "^0.14.3",
     "normalize.css": "8.0.0",
     "npm-run-all": "4.1.2",
     "postcss-cli": "4.1.1",
@@ -84,7 +85,8 @@
     "build:css": "postcss -c postcss.config.js src/postcss/index.css -o public/static/main.css && cssnano < public/static/main.css > public/static/main.min.css",
     "build:html": "NODE_ENV=production ejs-cli src/index.ejs > public/static/index.html",
     "build:socket": "NODE_ENV=production browserify src/socket.js | uglifyjs > public/static/socket.min.js",
-    "build": "npm-run-all -l -s generate build:js build:css build:html build:socket"
+    "build": "npm-run-all -l -s generate build:js build:css build:html build:socket",
+    "precommit": "npm run build"
   },
   "false": {}
 }

@@ -3,12 +3,8 @@ node_modules
 *.log
 .DS_Store
 
-*.min.js
-*.min.css
-*.map
 package-lock.json
-bundle.js
-main.css
+yarn.lock
 public/static/4afc
 public/static/after-image-v1
 public/static/projects.json

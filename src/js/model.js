@@ -12,6 +12,8 @@ export default (state, emitter) => {
     state.ui.showShutdown = v;
     if (v) {
       state.ui.shutdownCounter++;
+    }else{
+      state.ui.shutdownCounter=0;
     }
     emitter.emit("render");
   });
@@ -21,6 +23,8 @@ export default (state, emitter) => {
     state.ui.showReboot = v;
     if (v) {
       state.ui.rebootCounter++;
+    }else{
+      state.ui.rebootCounter = 0;
     }
     emitter.emit("render");
   });

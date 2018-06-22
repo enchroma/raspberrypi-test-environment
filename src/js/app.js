@@ -59,7 +59,9 @@ Xhr(`/projects.json`, { json: true }).then(({ body }) => {
   app.state.projectData = body;
   app.state.ui = {
     showShutdown: false,
+    showReboot: false,
     shutdownCounter: 0,
+    rebootCounter: 0,
   };
 
   /**/

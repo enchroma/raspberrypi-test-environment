@@ -24,21 +24,20 @@ class Socket {
       for (var i = 0; i < data.length; i++) {
         if (noUiSliders[i]) {
           const v1 = parseInt((c[i] / 1023) * 255)
-          // values[i].push(v1)
-          // const l = values[i].length
-          // //allow time to pass
-          // if (l > 26) {
-          //   //only if there has been mvnt
-          //   if (
-          //     Math.abs(values[i][0] - v1) > 1 ||
-          //     Math.abs(values[i][1] - v1) > 1 ||
-          //     Math.abs(values[i][2] - v1) > 1
-          //   ) {
-          //     noUiSliders[i].set([v1])
-          //   }
-          //   values[i].shift()
-          // } else {
-          // }
+          values[i].push(v1)
+          const l = values[i].length
+          //allow time to pass
+          if (l > 26) {
+            //only if there has been mvnt
+            if (
+              Math.abs(values[i][0] - v1) > 2 ||
+              Math.abs(values[i][1] - v1) > 2
+            ) {
+              noUiSliders[i].set([v1])
+            }
+            values[i].shift()
+          } else {
+          }
           noUiSliders[i].set([v1])
         }
       }
